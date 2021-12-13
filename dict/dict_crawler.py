@@ -58,7 +58,7 @@ class Dict(Search):
             content+="--------------------------------------\n"
         except IndexError: #index_error:cccccc #沒本身翻譯->使用網路翻譯
             #網路翻譯
-            for ex in soup.find_all(id="tWebTrans"):  #EX:CCCCCC
+            for ex in soup.find_all(class_="wt-container"):  #EX:CCCCCC
                 a = 0
                 for net_ext in ex.find_all(class_="title",limit=3):
                     a+=1
@@ -77,25 +77,44 @@ class Dict(Search):
                             siml_words.append(s_w.getText())
                     #print("搜尋不到")
                     content = "搜尋不到"
+                    return content,siml_words
                 #print(siml_words[0])
                 #print(soup.find(class_="error-typo").getText())
 
             except AttributeError:#yyyyyrtyr(沒有)
                 print("no result~")
                 content = "查無資料~"
-                                       
-        #print("=========")
+                return content,siml_words 
+
         examples = soup.find_all(id='bilingual',limit=3)
         #print(examples)
-        #例句
-        for example in examples:
-            a = 0
-            for p in example.find_all("p",class_=""):
-                a+=1
-                if(a%2!=0):
-                    content+=str(int(a/2+1))+"."+p.getText().strip('\n')
-                else : 
-                    content+='\n'+p.getText()
+        if examples == []:#切換檢索字典例句
+            examples = soup.find_all(id='originalSound',limits=3)
+            if examples == []:
+                examples = soup.find_all(id='authority',limit=3)#fuck
+                if examples == []:
+                    content+="No examples!" #eggg
+                else:
+                    content = example_output(examples,content)                 
+            else :
+                content = example_output(examples,content)
+        else:#雙語例句
+            for example in examples:
+                a = 0
+                for p in example.find_all("p",class_=""):
+                    a+=1
+                    if(a%2!=0):
+                        content+=str(int(a/2+1))+"."+p.getText().strip('\n')
+                    else : 
+                        content+='\n'+p.getText()
         cc = OpenCC('s2twp') #簡體轉繁體
         content = cc.convert(content)
         return content,siml_words
+        
+def example_output(examples,content):
+    for example in examples:
+        a = 0
+        for p in example.find_all("p",class_=""):
+            a+=1
+            content+=str(int(a))+"."+p.getText().rstrip()+'\n'
+    return content

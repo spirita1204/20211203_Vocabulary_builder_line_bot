@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,7 +31,11 @@ ALLOWED_HOSTS = [
     '667f-2001-b400-e285-1336-6138-241a-1696-6b7a.ngrok.io',
     '75e3-2001-b011-4009-10eb-384a-281d-2025-33f0.ngrok.io',
     '1f56-2001-b011-4009-10eb-384a-281d-2025-33f0.ngrok.io',
-    '6a15-2001-b011-4009-10eb-f97f-5c9c-7ee0-5ec7.ngrok.io'
+    '6a15-2001-b011-4009-10eb-f97f-5c9c-7ee0-5ec7.ngrok.io',
+    '378a-2001-b011-4009-10eb-8cf7-6e6e-2af9-984d.ngrok.io',
+    '48f7-2001-b400-e275-cce6-e86f-6ce5-8d4e-cde5.ngrok.io',
+    '9e2b-2001-b400-e275-cce6-e86f-6ce5-8d4e-cde5.ngrok.io',
+    'a0d7-2001-b011-4009-1b41-d40-f773-7ffc-e076.ngrok.io',
 ]
 
 
@@ -83,8 +87,12 @@ WSGI_APPLICATION = 'line_bot_dict.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',  #PostgreSQL
+        'NAME': 'line_bot_vb',  #資料庫名稱
+        'USER': 'postgres',  #資料庫帳號
+        'PASSWORD': 'daniel13579',  #資料庫密碼
+        'HOST': 'localhost',  #Server(伺服器)位址
+        'PORT': '5432'  #PostgreSQL Port號
     }
 }
 
@@ -126,6 +134,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
