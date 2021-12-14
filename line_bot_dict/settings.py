@@ -35,7 +35,9 @@ ALLOWED_HOSTS = [
     '378a-2001-b011-4009-10eb-8cf7-6e6e-2af9-984d.ngrok.io',
     '48f7-2001-b400-e275-cce6-e86f-6ce5-8d4e-cde5.ngrok.io',
     '9e2b-2001-b400-e275-cce6-e86f-6ce5-8d4e-cde5.ngrok.io',
+    'c7fa-2001-b011-4009-1b41-d40-f773-7ffc-e076.ngrok.io',
     'a0d7-2001-b011-4009-1b41-d40-f773-7ffc-e076.ngrok.io',
+    'line-bot-dict.herokuapp.com'
 ]
 
 
