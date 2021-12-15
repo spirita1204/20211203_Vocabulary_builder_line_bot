@@ -48,12 +48,12 @@ class Dict(Search):
         content = ""
         try :            
             #標題
-            content+=self.area+'\n'
+            content+=self.area
             try : #kk音標
                 kk = soup.find(class_='phonetic').get_text()
-                content+="   英"+kk
+                content+="   英"+kk+'\n'
             except AttributeError:#kk音標找到空
-                pass
+                content+='\n'
             #本身翻譯
             s = soup.find(class_='trans-container')('ul')[0]('li')
             #print(s)
