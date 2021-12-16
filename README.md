@@ -64,7 +64,8 @@ $ pip install dj-static
 待新增:     
 歷史紀錄(字母)(複檢)  
 中文輸入  
-圖片輸入#impracticable     
+圖片輸入#impracticable 
+語音輸入
 第二版:發音  
   
 2021/12/04 英漢辭典初步雛形,Crawler  
